@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お申し込みありがとうございます | BYMACH PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pearl-white: #FAF8F3;
+  --navy: #0D1B3E;
+  --champagne-gold: #C9A961;
+  --charcoal: #2C2E33;
+  --stone-gray: #8B8D94;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--pearl-white);
+  color: var(--charcoal);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+.label {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--champagne-gold);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.divider {
+  width: 40px;
+  height: 1px;
+  background: var(--champagne-gold);
+  margin: 24px auto;
+}
+h1 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  margin-bottom: 24px;
+}
+.message {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+.back-link {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--navy);
+  color: var(--pearl-white);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  transition: background 0.3s ease;
+}
+.back-link:hover {
+  background: var(--champagne-gold);
+  color: var(--navy);
+}
+.company {
+  margin-top: 60px;
+  font-size: 11px;
+  color: var(--stone-gray);
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="label">THANK YOU</div>
+  <h1>お申し込みいただき<br>ありがとうございます。</h1>
+  <div class="divider"></div>
+  <p class="message">
+    お問い合わせを確かに受け付けました。<br>
+    担当者より2営業日以内にご連絡いたします。<br>
+    今しばらくお待ちくださいませ。
+  </p>
+  <a href="/" class="back-link">TOP に戻る</a>
+  <div class="company">
+    レナード株式会社<br>
+    info@lenard.jp
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+/* ============================================
+   BYMACH PRO SWIPE LP
+   王者スタイル(Hermès/Apple/TOYOTA Century風)
+   ============================================ */
+
+:root {
+  /* Color palette */
+  --pearl-white: #FAF8F3;
+  --navy: #0D1B3E;
+  --deep-navy: #05102A;
+  --champagne-gold: #C9A961;
+  --subtle-gold: #D4AF37;
+  --charcoal: #2C2E33;
+  --stone-gray: #8B8D94;
+  --pure-white: #FFFFFF;
+
+  /* Fonts */
+  --font-serif: 'Noto Serif JP', 'Yu Mincho', 'YuMincho', serif;
+  --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --font-english: 'Playfair Display', serif;
+
+  /* CTA bar height */
+  --cta-bar-height: 60px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--pearl-white);
+  font-family: var(--font-sans);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+/* ============================================
+   SWIPER
+   ============================================ */
+
+.lp-swiper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  background: var(--pearl-white);
+  position: relative;
+}
+
+.slide-full {
+  padding: 0;
+  padding-bottom: var(--cta-bar-height);
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+  /* Fade-in animation (Phase 1: slide-level) */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.swiper-slide-active .slide-image,
+.swiper-slide-prev .slide-image,
+.swiper-slide-next .slide-image {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Final CTA slide - no bottom padding (remove fixed bar here) */
+.slide-cta {
+  padding-bottom: 0;
+}
+
+/* ============================================
+   PAGINATION (right side dots)
+   ============================================ */
+
+.swiper-pagination {
+  position: absolute;
+  right: 10px !important;
+  top: 50%;
+  transform: translateY(-50%);
+  left: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+
+.swiper-pagination-bullet {
+  width: 4px !important;
+  height: 4px !important;
+  background: var(--navy) !important;
+  opacity: 0.25 !important;
+  margin: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: var(--champagne-gold) !important;
+  height: 12px !important;
+  border-radius: 2px !important;
+}
+
+/* ============================================
+   FIXED BOTTOM CTA BAR
+   ============================================ */
+
+.fixed-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--cta-bar-height);
+  background: rgba(13, 27, 62, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: stretch;
+  z-index: 100;
+  border-top: 1px solid rgba(201, 169, 97, 0.3);
+  padding-bottom: env(safe-area-inset-bottom);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.fixed-cta-bar.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pearl-white);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:active {
+  background: rgba(201, 169, 97, 0.15);
+}
+
+.cta-btn + .cta-btn {
+  border-left: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.cta-btn-demo {
+  background: var(--champagne-gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.cta-btn-demo:active {
+  background: var(--subtle-gold);
+}
+
+.cta-btn-label {
+  white-space: nowrap;
+}
+
+/* ============================================
+   CTA CLICK OVERLAY (on final slide)
+   ============================================ */
+
+.cta-click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cta-area {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.cta-area:active {
+  background: rgba(201, 169, 97, 0.15);
+}
+
+/* These percentages are tuned to the CTA image layout.
+   Adjust if the image proportions change. */
+.cta-area-demo {
+  top: 23%;
+  height: 9%;
+}
+
+.cta-area-line {
+  top: 34%;
+  height: 9%;
+}
+
+.cta-area-doc {
+  top: 45%;
+  height: 9%;
+}
+
+/* ============================================
+   MODAL (Demo Booking Form)
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 16, 42, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--pearl-white);
+  border-radius: 4px;
+  max-width: 500px;
+  width: 100%;
+  padding: 40px 28px 32px;
+  margin: 40px 0;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: var(--stone-gray);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--navy);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+}
+
+.modal-label {
+  font-family: var(--font-english);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--champagne-gold);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+
+.modal-sub {
+  font-size: 13px;
+  color: var(--charcoal);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.required {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--champagne-gold);
+  background: rgba(201, 169, 97, 0.12);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-left: 6px;
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #D8D5CC;
+  background: var(--pure-white);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--charcoal);
+  transition: border-color 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--champagne-gold);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: var(--font-sans);
+}
+
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--navy);
+  color: var(--pearl-white);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 8px;
+}
+
+.form-submit:hover {
+  background: var(--deep-navy);
+}
+
+.form-submit:active {
+  background: var(--champagne-gold);
+  color: var(--navy);
+}
+
+.form-note {
+  font-size: 11px;
+  color: var(--stone-gray);
+  text-align: center;
+  margin: 16px 0 0;
+  line-height: 1.7;
+}
+
+/* ============================================
+   RESPONSIVE (tablet/desktop fallback)
+   ============================================ */
+
+@media (min-width: 768px) {
+  .swiper-slide {
+    background: var(--deep-navy);
+  }
+
+  .slide-image {
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .fixed-cta-bar {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .fixed-cta-bar.hidden {
+    transform: translateX(-50%) translateY(100%);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-image {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .fixed-cta-bar,
+  .modal-content,
+  .modal-overlay {
+    transition: none;
+  }
+}
