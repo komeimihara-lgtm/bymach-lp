@@ -417,28 +417,260 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE (tablet/desktop fallback)
+   RESPONSIVE - PC / TABLET (Premium Editorial Display)
    ============================================ */
 
-@media (min-width: 768px) {
+/* TABLET (768px - 1023px) — モバイル枠を中央に */
+@media (min-width: 768px) and (max-width: 1023px) {
   .swiper-slide {
-    background: var(--deep-navy);
+    background: linear-gradient(135deg, #05102A 0%, #0D1B3E 50%, #05102A 100%);
   }
 
   .slide-image {
-    max-width: 480px;
+    max-width: 540px;
+    width: 100%;
     margin: 0 auto;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.4),
+                0 0 120px rgba(201, 169, 97, 0.05);
   }
 
   .fixed-cta-bar {
-    max-width: 480px;
+    max-width: 540px;
     left: 50%;
     transform: translateX(-50%);
+    border-left: 1px solid rgba(201, 169, 97, 0.15);
+    border-right: 1px solid rgba(201, 169, 97, 0.15);
   }
 
   .fixed-cta-bar.hidden {
     transform: translateX(-50%) translateY(100%);
+  }
+
+  .swiper-pagination {
+    right: calc(50% - 290px) !important;
+  }
+}
+
+/* DESKTOP (1024px - 1439px) — Editorial 中央コンテンツ + 装飾 */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(201, 169, 97, 0.15) 30%,
+      rgba(201, 169, 97, 0.15) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  body::before {
+    left: calc(50% - 320px);
+  }
+
+  body::after {
+    right: calc(50% - 320px);
+  }
+
+  .swiper-slide {
+    background: linear-gradient(135deg, #05102A 0%, #0D1B3E 50%, #05102A 100%);
+  }
+
+  .slide-image {
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.5),
+                0 0 160px rgba(201, 169, 97, 0.06);
+  }
+
+  .fixed-cta-bar {
+    max-width: 540px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 1px solid rgba(201, 169, 97, 0.2);
+    border-right: 1px solid rgba(201, 169, 97, 0.2);
+  }
+
+  .fixed-cta-bar.hidden {
+    transform: translateX(-50%) translateY(100%);
+  }
+
+  /* PC左右の装飾的英語タグライン */
+  .lp-swiper::before {
+    content: 'BYMACH PRO';
+    position: fixed;
+    left: 60px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(50%);
+    transform-origin: left center;
+    font-family: var(--font-english);
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: rgba(201, 169, 97, 0.5);
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .lp-swiper::after {
+    content: 'MADE IN JAPAN — WORLD\'S FIRST';
+    position: fixed;
+    right: 60px;
+    top: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: right center;
+    font-family: var(--font-english);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: rgba(201, 169, 97, 0.5);
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .swiper-pagination {
+    right: calc(50% - 295px) !important;
+  }
+
+  .modal-content {
+    max-width: 560px;
+    padding: 48px 40px 40px;
+  }
+
+  .modal-title {
+    font-size: 30px;
+  }
+}
+
+/* LARGE DESKTOP (1440px+) — フルプレミアム表示 */
+@media (min-width: 1440px) {
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(201, 169, 97, 0.18) 25%,
+      rgba(201, 169, 97, 0.18) 75%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  body::before {
+    left: calc(50% - 340px);
+  }
+
+  body::after {
+    right: calc(50% - 340px);
+  }
+
+  .swiper-slide {
+    background: linear-gradient(135deg, #05102A 0%, #0D1B3E 50%, #05102A 100%);
+  }
+
+  .slide-image {
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.55),
+                0 0 200px rgba(201, 169, 97, 0.08);
+  }
+
+  .fixed-cta-bar {
+    max-width: 580px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 1px solid rgba(201, 169, 97, 0.25);
+    border-right: 1px solid rgba(201, 169, 97, 0.25);
+  }
+
+  .fixed-cta-bar.hidden {
+    transform: translateX(-50%) translateY(100%);
+  }
+
+  .cta-btn {
+    font-size: 14px;
+  }
+
+  /* PC左右の装飾的英語タグライン */
+  .lp-swiper::before {
+    content: 'BYMACH PRO';
+    position: fixed;
+    left: 90px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(50%);
+    transform-origin: left center;
+    font-family: var(--font-english);
+    font-size: 12px;
+    letter-spacing: 0.6em;
+    color: rgba(201, 169, 97, 0.55);
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .lp-swiper::after {
+    content: 'MADE IN JAPAN — WORLD\'S FIRST';
+    position: fixed;
+    right: 90px;
+    top: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: right center;
+    font-family: var(--font-english);
+    font-size: 12px;
+    letter-spacing: 0.5em;
+    color: rgba(201, 169, 97, 0.55);
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* 上部にロゴ的な英語表記 */
+  .lp-swiper > .swiper-wrapper::before {
+    content: 'PROFESSIONAL BEAUTY EQUIPMENT';
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-english);
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: rgba(201, 169, 97, 0.55);
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .swiper-pagination {
+    right: calc(50% - 315px) !important;
+  }
+
+  .modal-content {
+    max-width: 600px;
+    padding: 56px 48px 48px;
+  }
+
+  .modal-title {
+    font-size: 32px;
   }
 }
 
